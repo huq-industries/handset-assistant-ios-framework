@@ -19,7 +19,8 @@
 		004AD49526026909008AB768 /* SampleApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD49426026909008AB768 /* SampleApplicationTests.swift */; };
 		004AD4A026026909008AB768 /* SampleApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD49F26026909008AB768 /* SampleApplicationUITests.swift */; };
 		004AD4C226026A28008AB768 /* HandsetAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD4C126026A28008AB768 /* HandsetAssistant.swift */; };
-		004AD4CE26026ACC008AB768 /* HandsetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0015A004260267E200A42BC1 /* HandsetAssistant.framework */; };
+		004AD4EA26027126008AB768 /* HandsetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0015A004260267E200A42BC1 /* HandsetAssistant.framework */; };
+		004AD4EB26027126008AB768 /* HandsetAssistant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0015A004260267E200A42BC1 /* HandsetAssistant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,20 @@
 			remoteInfo = SampleApplication;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		004AD4EC26027126008AB768 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				004AD4EB26027126008AB768 /* HandsetAssistant.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0015A004260267E200A42BC1 /* HandsetAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HandsetAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004AD4CE26026ACC008AB768 /* HandsetAssistant.framework in Frameworks */,
+				004AD4EA26027126008AB768 /* HandsetAssistant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +274,7 @@
 				004AD47726026907008AB768 /* Sources */,
 				004AD47826026907008AB768 /* Frameworks */,
 				004AD47926026907008AB768 /* Resources */,
+				004AD4EC26027126008AB768 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
