@@ -9,7 +9,7 @@ import Foundation
 import CoreTelephony
 import UIKit
 
-public class HandsetAssistant
+public class HandsetRecorder
 {
     let kHuqTimeDate: String = "HuqTimeDate";
     let kHuqSDKVersion: String = "HuqSDKVersion";
@@ -42,7 +42,7 @@ public class HandsetAssistant
     
     private var observer: NSObjectProtocol?
     
-    public static let shared = HandsetAssistant()
+    public static let shared = HandsetRecorder()
     
     private init()
     {

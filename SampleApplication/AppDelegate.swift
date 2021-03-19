@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let assistant: HandsetAssistant = HandsetAssistant.shared
+        let assistant: HandsetRecorder = HandsetRecorder.shared
         assistant.startRecording(apiKey: "6f3b4909-3bea-48a2-8390-35b1a72f207c")
         // Override point for customization after application launch.
         return true
