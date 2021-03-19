@@ -61,8 +61,21 @@ public class HandsetAssistant
         
         postData()
         
-        observer = NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { notification in
+        if observer != nil
+        {
+            NotificationCenter.default.removeObserver(observer!)
+        }
+        
+        observer = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { notification in
             self.postData()
+        }
+    }
+    
+    public func stopRecording()
+    {
+        if observer != nil
+        {
+            NotificationCenter.default.removeObserver(observer!)
         }
     }
     
