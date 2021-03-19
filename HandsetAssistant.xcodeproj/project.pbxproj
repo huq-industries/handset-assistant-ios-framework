@@ -18,7 +18,7 @@
 		004AD48A26026908008AB768 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004AD48826026908008AB768 /* LaunchScreen.storyboard */; };
 		004AD49526026909008AB768 /* SampleApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD49426026909008AB768 /* SampleApplicationTests.swift */; };
 		004AD4A026026909008AB768 /* SampleApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD49F26026909008AB768 /* SampleApplicationUITests.swift */; };
-		004AD4C226026A28008AB768 /* HandsetAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD4C126026A28008AB768 /* HandsetAssistant.swift */; };
+		004AD4C226026A28008AB768 /* HandsetRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AD4C126026A28008AB768 /* HandsetRecorder.swift */; };
 		004AD4EA26027126008AB768 /* HandsetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0015A004260267E200A42BC1 /* HandsetAssistant.framework */; };
 		004AD4EB26027126008AB768 /* HandsetAssistant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0015A004260267E200A42BC1 /* HandsetAssistant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -82,7 +82,7 @@
 		004AD49B26026909008AB768 /* SampleApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		004AD49F26026909008AB768 /* SampleApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleApplicationUITests.swift; sourceTree = "<group>"; };
 		004AD4A126026909008AB768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		004AD4C126026A28008AB768 /* HandsetAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandsetAssistant.swift; sourceTree = "<group>"; };
+		004AD4C126026A28008AB768 /* HandsetRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandsetRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +154,7 @@
 		0015A006260267E200A42BC1 /* HandsetAssistant */ = {
 			isa = PBXGroup;
 			children = (
-				004AD4C126026A28008AB768 /* HandsetAssistant.swift */,
+				004AD4C126026A28008AB768 /* HandsetRecorder.swift */,
 				0015A007260267E200A42BC1 /* HandsetAssistant.h */,
 				0015A008260267E200A42BC1 /* Info.plist */,
 			);
@@ -418,7 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004AD4C226026A28008AB768 /* HandsetAssistant.swift in Sources */,
+				004AD4C226026A28008AB768 /* HandsetRecorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

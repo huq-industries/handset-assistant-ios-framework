@@ -29,12 +29,12 @@ struct ContentView_Previews: PreviewProvider {
 
 func startRecording()
 {
-    let assistant: HandsetAssistant = HandsetAssistant.shared
+    let assistant: HandsetRecorder = HandsetRecorder.shared
     assistant.startRecording(apiKey: "6f3b4909-3bea-48a2-8390-35b1a72f207c")
 }
 
 func stopRecording()
 {
-    let assistant: HandsetAssistant = HandsetAssistant.shared
+    let assistant: HandsetRecorder = HandsetRecorder.shared
     assistant.stopRecording()
 }
