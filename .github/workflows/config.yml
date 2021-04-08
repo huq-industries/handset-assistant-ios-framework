@@ -1,0 +1,50 @@
+name: Build Swift Framework
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout framework repository
+      uses: actions/checkout@v2
+      with:
+        path: framework
+
+    - name: Build Framework
+      working-directory: framework
+      run: ./build_framework.sh
+
+    - name: Checkout package repository
+      uses: actions/checkout@v2
+      with:
+        repository: 'huq-industries/handset-assistant-ios'
+        token: ${{ secrets.HUQMACHINE_TOKEN }}
+        path: package
+        fetch-depth: 0
+
+    - name: Delete old framework
+      working-directory: package
+      run: rm -rf Sources/HandsetAssistant/Framework/HandsetAssistant.xcframework
+
+    - name: Copy new framework
+      run: cp -r framework/build/HandsetAssistant.xcframework package/Sources/HandsetAssistant/Framework/
+
+    - name: Bump version
+      id: increment_version
+      working-directory: package
+      run: echo "::set-output name=next-version::$(git describe --tags $(git rev-list --tags --max-count=1) | awk -F. -v OFS=. '{$NF++;print}')"
+
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: Framework binary updated from handset-assistant-ios-framework
+        add: Sources/HandsetAssistant/Framework/*
+        tag: ${{ steps.increment_version.outputs.next-version }}
+        cwd: package
