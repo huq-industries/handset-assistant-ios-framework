@@ -41,6 +41,10 @@ jobs:
       working-directory: package
       run: echo "::set-output name=next-version::$(git describe --tags $(git rev-list --tags --max-count=1) | awk -F. -v OFS=. '{$NF++;print}')"
 
+    - name: Update Changelog
+      working-directory: framework
+      run: sed -i "" -e '6a\'$'\n''## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
+
     - name: Commit and push
       uses: EndBug/add-and-commit@v7
       with:
