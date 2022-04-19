@@ -2,13 +2,10 @@ name: Build Swift Framework
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: release
 
 jobs:
-  build:
-
+  release:
     runs-on: macos-latest
 
     steps:
@@ -41,7 +38,7 @@ jobs:
       working-directory: package
       run: echo "::set-output name=next-version::$(git describe --tags $(git rev-list --tags --max-count=1) | awk -F. -v OFS=. '{$NF++;print}')"
 
-    - name: Commit and push
+    - name: Update package project
       uses: EndBug/add-and-commit@v7
       with:
         message: Framework binary updated from handset-assistant-ios-framework
