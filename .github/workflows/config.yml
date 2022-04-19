@@ -15,6 +15,15 @@ jobs:
         path: framework
         fetch-depth: 0
 
+    - name: Bump version
+      id: increment_version
+      working-directory: framework
+      run: echo "::set-output name=next-version::$(git describe --tags $(git rev-list --tags --max-count=1) | awk -F. -v OFS=. '{$NF++;print}')"
+
+    - name: Update library version
+      run: sed -ie '/let sdkVersion:\ String/s/.*/    let sdkVersion:\ String = \"iOS_handset_${{ steps.increment_version.outputs.next-version }}\";/' HandsetAssistant/HandsetRecorder.swift
+      working-directory: framework
+
     - name: Build Framework
       working-directory: framework
       run: ./build_framework.sh
@@ -34,11 +43,6 @@ jobs:
     - name: Copy new framework
       run: cp -r framework/build/HandsetAssistant.xcframework package/Sources/HandsetAssistant/Framework/
 
-    - name: Bump version
-      id: increment_version
-      working-directory: framework
-      run: echo "::set-output name=next-version::$(git describe --tags $(git rev-list --tags --max-count=1) | awk -F. -v OFS=. '{$NF++;print}')"
-
     - name: Update package project
       uses: EndBug/add-and-commit@v7
       with:
@@ -46,3 +50,15 @@ jobs:
         add: Sources/HandsetAssistant/Framework/*
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: package
+
+    - name: Update Changelog
+      working-directory: framework
+      run: sed -i "" -e '6a\'$'\n''## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
+
+    - name: Update framework project
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: Bump version and release
+        add: '["CHANGELOG.md", "HandsetAssistant/HandsetRecorder.swift"]'
+        tag: ${{ steps.increment_version.outputs.next-version }}
+        cwd: framework
