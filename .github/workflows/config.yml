@@ -59,6 +59,6 @@ jobs:
       uses: EndBug/add-and-commit@v7
       with:
         message: Bump version and release
-        add: [CHANGELOG.md, HandsetAssistant/HandsetRecorder.swift]
+        add: '["CHANGELOG.md", "HandsetAssistant/HandsetRecorder.swift"]'
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: framework
