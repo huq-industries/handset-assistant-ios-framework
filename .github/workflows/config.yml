@@ -35,7 +35,7 @@ jobs:
 
     - name: Bump version
       id: increment_version
-      working-directory: package
+      working-directory: framework
       run: echo "::set-output name=next-version::$(git describe --tags $(git rev-list --tags --max-count=1) | awk -F. -v OFS=. '{$NF++;print}')"
 
     - name: Update package project
