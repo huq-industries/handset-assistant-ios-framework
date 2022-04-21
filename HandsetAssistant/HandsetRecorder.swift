@@ -36,7 +36,7 @@ public class HandsetRecorder
     let huqAPIKeyPreference: String = "huqAPIKey";
     
     let huqDeviceInformationEvent: String = "HuqDeviceInformationEvent";
-    let sdkVersion: String = "iOS_handset_1.0.0";
+    let sdkVersion: String = "iOS_handset_1.0.1";
     
     let huqDefaultsNamespace: String = "HuqDefaults";
     
