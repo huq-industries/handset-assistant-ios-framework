@@ -100,12 +100,16 @@ public class HandsetRecorder
         
         // carrier
         let networkInfo: CTTelephonyNetworkInfo  = CTTelephonyNetworkInfo()
-        if let carriers: [String: CTCarrier] = networkInfo.serviceSubscriberCellularProviders
+        if let carrier: CTCarrier = networkInfo.serviceSubscriberCellularProviders?.first?.value
         {
-            if let primaryCarrier: CTCarrier = carriers.first?.value
+            if let carrierName: String = carrier.carrierName
             {
-                parameterDictionary[kHuqCarrierName] = primaryCarrier.carrierName!
-                parameterDictionary[kHuqSimCode] = primaryCarrier.mobileNetworkCode! + primaryCarrier.mobileCountryCode!
+                parameterDictionary[kHuqCarrierName] = carrierName
+            }
+            
+            if carrier.mobileNetworkCode != nil && carrier.mobileCountryCode != nil
+            {
+                parameterDictionary[kHuqSimCode] = carrier.mobileNetworkCode! + carrier.mobileCountryCode!
             }
         }
         
