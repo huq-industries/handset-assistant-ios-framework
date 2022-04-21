@@ -46,3 +46,16 @@ jobs:
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: package
         new_branch: main
+
+    - name: Update Changelog
+      working-directory: framework
+      run: sed -i "" -e '6a\'$'\n''## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
+
+    - name: Update framework project
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: Bump version and release
+        add: '["CHANGELOG.md", "HandsetAssistant/HandsetRecorder.swift"]'
+        tag: ${{ steps.increment_version.outputs.next-version }}
+        cwd: framework
+        new_branch: main
