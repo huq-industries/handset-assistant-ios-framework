@@ -44,21 +44,23 @@ jobs:
       run: cp -r framework/build/HandsetAssistant.xcframework package/Sources/HandsetAssistant/Framework/
 
     - name: Update package project
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         message: Framework binary updated from handset-assistant-ios-framework
         add: Sources/HandsetAssistant/Framework/*
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: package
+        new_branch: main
 
     - name: Update Changelog
       working-directory: framework
       run: sed -i "" -e '6a\'$'\n''## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
 
     - name: Update framework project
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         message: Bump version and release
         add: '["CHANGELOG.md", "HandsetAssistant/HandsetRecorder.swift"]'
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: framework
+        new_branch: main
