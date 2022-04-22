@@ -36,7 +36,7 @@ public class HandsetRecorder
     let huqAPIKeyPreference: String = "huqAPIKey";
     
     let huqDeviceInformationEvent: String = "HuqDeviceInformationEvent";
-    let sdkVersion: String = "iOS_handset_1.0.0";
+    let sdkVersion: String = "iOS_handset_1.0.1";
     
     let huqDefaultsNamespace: String = "HuqDefaults";
     
@@ -133,10 +133,14 @@ public class HandsetRecorder
         parameterDictionary[kHuqBundleId] = Bundle.main.bundleIdentifier
         
         // locale
-        let languageString: String = Locale.current.languageCode!
-        parameterDictionary[kHuqLanguage] = languageString
-        let localeString: String = Locale.current.regionCode!
-        parameterDictionary[kHuqCountry] = localeString
+        if let languageString: String = Locale.current.languageCode
+        {
+            parameterDictionary[kHuqLanguage] = languageString
+        }
+        if let localeString: String = Locale.current.regionCode
+        {
+            parameterDictionary[kHuqCountry] = localeString
+        }
         
         // screen
         let screenSize: CGRect = UIScreen.main.bounds
