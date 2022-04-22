@@ -133,10 +133,14 @@ public class HandsetRecorder
         parameterDictionary[kHuqBundleId] = Bundle.main.bundleIdentifier
         
         // locale
-        let languageString: String = Locale.current.languageCode!
-        parameterDictionary[kHuqLanguage] = languageString
-        let localeString: String = Locale.current.regionCode!
-        parameterDictionary[kHuqCountry] = localeString
+        if let languageString: String = Locale.current.languageCode
+        {
+            parameterDictionary[kHuqLanguage] = languageString
+        }
+        if let localeString: String = Locale.current.regionCode
+        {
+            parameterDictionary[kHuqCountry] = localeString
+        }
         
         // screen
         let screenSize: CGRect = UIScreen.main.bounds
