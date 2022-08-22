@@ -164,7 +164,7 @@ public class HandsetRecorder
             request.httpMethod = "POST"
             
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-                guard let data = data else { return }
+                guard data != nil else { return }
             }
             task.resume()
         }
