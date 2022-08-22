@@ -2,7 +2,7 @@ name: Build Swift Framework
 
 on:
   push:
-    branches: release
+    branches: pod-deploy-dev
 
 jobs:
   release:
@@ -63,4 +63,4 @@ jobs:
         add: '["CHANGELOG.md", "HandsetAssistant/HandsetRecorder.swift"]'
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: framework
-        new_branch: main
+        new_branch: pod-deploy-dev
