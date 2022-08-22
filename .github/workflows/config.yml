@@ -7,6 +7,8 @@ on:
 jobs:
   release:
     runs-on: macos-latest
+    env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
 
     steps:
     - name: Checkout framework repository
@@ -52,6 +54,16 @@ jobs:
         cwd: package
         new_branch: main
 
+    - name: Install podspec bump
+      run: npm install -g podspec-bump
+
+    - name: Install CocoaPods gem
+      run: sudo gem install cocoapods
+
+    - name: Bump podspec version
+      working-directory: framework
+      run: podspec-bump -p HandsetAssistant.podspec -i "${{ steps.increment_version.outputs.next-version }}" -w
+        
     - name: Update Changelog
       working-directory: framework
       run: sed -i "" -e '6a\'$'\n''## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
@@ -64,3 +76,11 @@ jobs:
         tag: ${{ steps.increment_version.outputs.next-version }}
         cwd: framework
         new_branch: main
+
+    - name: Set up pod trunk
+      working-directory: framework
+      run: pod setup
+
+    - name: Push podspec
+      working-directory: framework
+      run: pod trunk push HandsetAssistant.podspec
