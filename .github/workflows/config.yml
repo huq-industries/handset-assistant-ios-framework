@@ -7,6 +7,8 @@ on:
 jobs:
   release:
     runs-on: macos-latest
+    env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
 
     steps:
     - name: Checkout framework repository
