@@ -60,13 +60,17 @@ jobs:
     - name: Install CocoaPods gem
       run: sudo gem install cocoapods
 
-    - name: Install CocoaPods
-      working-directory: framework
-      run: pod install
-
     - name: Bump podspec version
-      working-directory: package
+      working-directory: framework
       run: podspec-bump -p HandsetAssistant.podspec -i "${{ steps.increment_version.outputs.next-version }}" -w
+        
+    - name: Set up pod trunk
+      working-directory: framework
+      run: pod setup
+
+    - name: Push podspec
+      working-directory: framework
+      run: pod trunk push HandsetAssistant.podspec
 
     - name: Update Changelog
       working-directory: framework
