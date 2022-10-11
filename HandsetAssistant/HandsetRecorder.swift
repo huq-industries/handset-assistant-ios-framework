@@ -36,7 +36,7 @@ public class HandsetRecorder
     let huqAPIKeyPreference: String = "huqAPIKey";
     
     let huqDeviceInformationEvent: String = "HuqDeviceInformationEvent";
-    let sdkVersion: String = "iOS_handset_1.0.2";
+    let sdkVersion: String = "iOS_handset_1.0.3";
     
     let huqDefaultsNamespace: String = "HuqDefaults";
     
@@ -100,17 +100,21 @@ public class HandsetRecorder
         
         // carrier
         let networkInfo: CTTelephonyNetworkInfo  = CTTelephonyNetworkInfo()
-        if let carrier: CTCarrier = networkInfo.serviceSubscriberCellularProviders?.first?.value
-        {
-            if let carrierName: String = carrier.carrierName
+        if #available(iOS 12.0, *) {
+            if let carrier: CTCarrier = networkInfo.serviceSubscriberCellularProviders?.first?.value
             {
-                parameterDictionary[kHuqCarrierName] = carrierName
+                if let carrierName: String = carrier.carrierName
+                {
+                    parameterDictionary[kHuqCarrierName] = carrierName
+                }
+                
+                if carrier.mobileNetworkCode != nil && carrier.mobileCountryCode != nil
+                {
+                    parameterDictionary[kHuqSimCode] = carrier.mobileNetworkCode! + carrier.mobileCountryCode!
+                }
             }
-            
-            if carrier.mobileNetworkCode != nil && carrier.mobileCountryCode != nil
-            {
-                parameterDictionary[kHuqSimCode] = carrier.mobileNetworkCode! + carrier.mobileCountryCode!
-            }
+        } else {
+            // Fallback on earlier versions
         }
         
         // device model
@@ -160,7 +164,7 @@ public class HandsetRecorder
             request.httpMethod = "POST"
             
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-                guard let data = data else { return }
+                guard data != nil else { return }
             }
             task.resume()
         }
