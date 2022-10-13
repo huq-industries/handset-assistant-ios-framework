@@ -66,7 +66,7 @@ jobs:
         
     - name: Update Changelog
       working-directory: framework
-      run: sed -i "" -e '6a\'$'\n''## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
+      run: sed -i "" -e '4a\'$'\n''\n## ${{ steps.increment_version.outputs.next-version}}' CHANGELOG.md
 
     - name: Update framework project
       uses: EndBug/add-and-commit@v9
